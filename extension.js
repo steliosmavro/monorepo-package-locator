@@ -97,7 +97,50 @@ function activate(context) {
     }
   );
 
-  context.subscriptions.push(gotoPackageCommand);
+  // Context menu command - go to package source from node_modules
+  const gotoPackageSourceCommand = vscode.commands.registerCommand(
+    "monorepoPackageLocator.gotoPackageSource",
+    async (uri) => {
+      try {
+        if (!uri || !uri.fsPath) {
+          return;
+        }
+
+        const folderPath = uri.fsPath;
+
+        // Only works inside node_modules
+        if (!folderPath.includes("node_modules")) {
+          return;
+        }
+
+        // Check if it's a symlink
+        const stats = fs.lstatSync(folderPath);
+        if (!stats.isSymbolicLink()) {
+          return vscode.window.showInformationMessage(
+            "This folder is not a symlinked package"
+          );
+        }
+
+        // Resolve the symlink to get the real path
+        const realPath = fs.realpathSync(folderPath);
+
+        // Check if the real path is inside the workspace
+        const workspaceRoot =
+          vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+        if (!workspaceRoot || !realPath.startsWith(workspaceRoot)) {
+          return vscode.window.showInformationMessage(
+            "Package source is outside the workspace"
+          );
+        }
+
+        await revealInExplorer(realPath);
+      } catch (error) {
+        vscode.window.showErrorMessage(`Error: ${error.message}`);
+      }
+    }
+  );
+
+  context.subscriptions.push(gotoPackageCommand, gotoPackageSourceCommand);
 }
 
 async function revealInExplorer(targetPath) {

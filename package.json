@@ -27,8 +27,21 @@
       {
         "command": "monorepoPackageLocator.gotoPackage",
         "title": "Monorepo: Go to Package"
+      },
+      {
+        "command": "monorepoPackageLocator.gotoPackageSource",
+        "title": "Go to Package Source"
       }
     ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "monorepoPackageLocator.gotoPackageSource",
+          "when": "explorerResourceIsFolder && resourcePath =~ /node_modules\\/.+/",
+          "group": "navigation"
+        }
+      ]
+    },
     "keybindings": [
       {
         "command": "monorepoPackageLocator.gotoPackage",
