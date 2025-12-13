@@ -4,6 +4,11 @@
   "description": "Quickly navigate to package sources in your monorepo",
   "version": "0.0.1",
   "publisher": "mavro",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/steliosmavro/monorepo-package-locator"
+  },
+  "icon": "images/monorepo-package-locator-logo-v2-128x128.png",
   "engines": {
     "vscode": "^1.80.0"
   },
