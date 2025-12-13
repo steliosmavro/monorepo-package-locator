@@ -12,5 +12,29 @@
   ],
   "activationEvents": [],
   "main": "./extension.js",
-  "contributes": {}
+  "contributes": {
+    "configuration": {
+      "title": "Monorepo Package Locator",
+      "properties": {
+        "monorepoPackageLocator.namespace": {
+          "type": "string",
+          "default": "",
+          "description": "The name of the folder containing your packages inside node_modules (e.g., @repo)."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "monorepoPackageLocator.gotoPackage",
+        "title": "Monorepo: Go to Package"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "monorepoPackageLocator.gotoPackage",
+        "key": "ctrl+shift+g",
+        "mac": "cmd+shift+g"
+      }
+    ]
+  }
 }
