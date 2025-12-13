@@ -1,0 +1,16 @@
+{
+  "name": "monorepo-package-locator",
+  "displayName": "Monorepo Package Locator",
+  "description": "Quickly navigate to package sources in your monorepo",
+  "version": "0.0.1",
+  "publisher": "mavro",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {}
+}
