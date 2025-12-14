@@ -2,7 +2,7 @@
   "name": "monorepo-package-locator",
   "displayName": "Monorepo Package Locator",
   "description": "Quickly navigate to package sources in your monorepo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "mavro",
   "repository": {
     "type": "git",
